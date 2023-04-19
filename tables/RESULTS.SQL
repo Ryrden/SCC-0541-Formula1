@@ -1,21 +1,21 @@
 /* CREATE TABLE */
 CREATE TABLE results(
-resultId DOUBLE,
-raceId DOUBLE,
-driverId DOUBLE,
-constructorId DOUBLE,
-number DOUBLE,
-grid DOUBLE,
-position DOUBLE,
-positionText VARCHAR(100),
-positionOrder DOUBLE,
-points DOUBLE,
-laps DOUBLE,
-time VARCHAR(100),
+resultId SERIAL,
+raceId SERIAL,
+driverId SERIAL,
+constructorId SERIAL,
+number SERIAL,
+grid SERIAL,
+position SERIAL,
+positionText VARCHAR(1),
+positionOrder SERIAL,
+points SERIAL,
+laps SERIAL,
+time VARCHAR(100), -- TODO: Rever dps
 milliseconds DOUBLE,
 fastestLap DOUBLE,
 rank DOUBLE,
 fastestLapTime VARCHAR(100),
 fastestLapSpeed VARCHAR(100),
-statusId DOUBLE
+statusId SMALLSERIAL
 );
