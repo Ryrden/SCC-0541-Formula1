@@ -1,7 +1,7 @@
 /* CREATE TABLE */
 CREATE TABLE qualifying
 (
-    qualifyId     INTEGER PRIMARY KEY NOT NULL,
+    qualifyId     INTEGER             NOT NULL,
     raceId        INTEGER             NOT NULL,
     driverId      INTEGER             NOT NULL,
     constructorId INTEGER             NOT NULL,
