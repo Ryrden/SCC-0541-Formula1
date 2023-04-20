@@ -1,12 +1,12 @@
 /* CREATE TABLE */
 CREATE TABLE driver (
-    driverId DOUBLE,
-    driverRef VARCHAR(100),
-    number DOUBLE,
-    code VARCHAR(100),
-    forename VARCHAR(100),
-    surname VARCHAR(100),
-    dob VARCHAR(100),
-    nationality VARCHAR(100),
-    url VARCHAR(100)
+    driverId INT(11),
+    driverRef VARCHAR(255),
+    number INT(11),
+    code VARCHAR(3),
+    forename VARCHAR(255),
+    surname VARCHAR(255),
+    dob DATE,
+    nationality VARCHAR(255),
+    url VARCHAR(255)
 );

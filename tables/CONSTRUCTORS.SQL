@@ -1,8 +1,8 @@
 /* CREATE TABLE */
 CREATE TABLE constructors (
-    constructorId DOUBLE,
-    constructorRef VARCHAR(100),
-    name VARCHAR(100),
-    nationality VARCHAR(100),
-    url VARCHAR(100)
+    constructorId INT(11),
+    constructorRef VARCHAR(255),
+    name VARCHAR(255),
+    nationality VARCHAR(255),
+    url VARCHAR(255)
 );

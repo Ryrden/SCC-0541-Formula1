@@ -1,12 +1,12 @@
 /* CREATE TABLE */
 CREATE TABLE circuits (
-    circuitId DOUBLE,
-    circuitRef VARCHAR(100),
-    name VARCHAR(100),
-    location VARCHAR(100),
-    country VARCHAR(100),
-    lat DOUBLE,
-    lng DOUBLE,
-    alt DOUBLE,
-    url VARCHAR(100)
+    circuitId INT(11),
+    circuitRef VARCHAR(255),
+    name VARCHAR(255),
+    location VARCHAR(255),
+    country VARCHAR(255),
+    lat FLOAT,
+    lng FLOAT,
+    alt INT(11),
+    url VARCHAR(255)
 );

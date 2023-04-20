@@ -1,9 +1,9 @@
 /* CREATE TABLE */
 CREATE TABLE laptimes (
-    raceId DOUBLE,
-    driverId DOUBLE,
-    lap DOUBLE,
-    position DOUBLE,
-    time VARCHAR(100),
-    milliseconds DOUBLE
+    raceId INT(11),
+    driverId INT(11),
+    lap INT(11),
+    position INT(11),
+    time VARCHAR(255),
+    milliseconds INT(11)
 );

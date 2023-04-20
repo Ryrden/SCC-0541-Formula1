@@ -1,10 +1,10 @@
 /* CREATE TABLE */
 CREATE TABLE pitstops (
-    raceId DOUBLE,
-    driverId DOUBLE,
-    stop DOUBLE,
-    lap DOUBLE,
-    time VARCHAR(100),
-    duration VARCHAR(100),
-    milliseconds DOUBLE
+    raceId INT(11),
+    driverId INT(11),
+    stop INT(11),
+    lap INT(11),
+    time TIME,
+    duration VARCHAR(255),
+    milliseconds INT(11)
 );
