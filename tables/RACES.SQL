@@ -1,9 +1,9 @@
 /* CREATE TABLE */
 CREATE TABLE races (
-    raceId INT(11),
-    year INT(11),
-    round INT(11),
-    circuitId INT(11),
+    raceId INT,
+    year INT,
+    round INT,
+    circuitId INT,
     name VARCHAR(255),
     date DATE,
     time TIME,

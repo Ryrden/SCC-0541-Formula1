@@ -1,12 +1,12 @@
 /* CREATE TABLE */
 CREATE TABLE airports(
-    id DOUBLE,
+    id INT,
     ident VARCHAR(100),
     type VARCHAR(100),
     name VARCHAR(100),
-    latitude_deg DOUBLE,
-    longitude_deg DOUBLE,
-    elevation_ft DOUBLE,
+    latitude_deg INT,
+    longitude_deg INT,
+    elevation_ft INT,
     continent VARCHAR(100),
     iso_country VARCHAR(100),
     iso_region VARCHAR(100),
