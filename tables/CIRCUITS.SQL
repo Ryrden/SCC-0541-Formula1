@@ -1,12 +1,13 @@
 /* CREATE TABLE */
 CREATE TABLE circuits (
-    circuitId INT(11),
-    circuitRef VARCHAR(255),
-    name VARCHAR(255),
+    circuitId INT NOT NULL PRIMARY KEY, -- TODO: SIZE
+    circuitRef VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     location VARCHAR(255),
     country VARCHAR(255),
     lat FLOAT,
     lng FLOAT,
-    alt INT(11),
-    url VARCHAR(255)
+    alt INT, -- TODO: SIZE
+    url VARCHAR(255) NOT NULL,
+    UNIQUE (URL)
 );
