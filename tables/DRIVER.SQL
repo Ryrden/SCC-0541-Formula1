@@ -1,13 +1,16 @@
 /* CREATE TABLE */
-CREATE TABLE drivers (
-    driverId INT NOT NULL PRIMARY KEY,
-    driverRef VARCHAR(255) NOT NULL,
-    number INT,
-    code VARCHAR(3),
-    forename VARCHAR(255) NOT NULL,
-    surname VARCHAR(255) NOT NULL,
-    dob DATE,
-    nationality VARCHAR(255),
-    url VARCHAR(255) NOT NULL,
+CREATE TABLE drivers
+(
+    driverId    INTEGER      NOT NULL,
+    driverRef   VARCHAR(255) NOT NULL,
+    number      INTEGER      DEFAULT NULL,
+    code        VARCHAR(3)   DEFAULT NULL,
+    forename    VARCHAR(255) NOT NULL,
+    surname     VARCHAR(255) NOT NULL,
+    dob         DATE         DEFAULT NULL,
+    nationality VARCHAR(255) DEFAULT NULL,
+    url         VARCHAR(255) NOT NULL,
+
+    CONSTRAINT PK_DRIVERS PRIMARY KEY (driverId),
     UNIQUE (url)
 );
