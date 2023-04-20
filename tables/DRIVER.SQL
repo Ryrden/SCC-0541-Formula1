@@ -1,5 +1,5 @@
 /* CREATE TABLE */
-CREATE TABLE driver (
+CREATE TABLE drivers (
     driverId INT NOT NULL PRIMARY KEY,
     driverRef VARCHAR(255) NOT NULL,
     number INT,
