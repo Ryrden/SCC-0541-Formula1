@@ -1,12 +1,14 @@
 /* CREATE TABLE */
-CREATE TABLE laptimes (
-    raceId INT NOT NULL,
-    driverId INT NOT NULL,
-    lap INT NOT NULL,
-    position INT DEFAULT NULL,
-    time VARCHAR(255) DEFAULT NULL,
-    milliseconds INT DEFAULT NULL,
+CREATE TABLE laptimes
+(
+    raceId       INTEGER NOT NULL,
+    driverId     INTEGER NOT NULL,
+    lap          INTEGER NOT NULL,
+    position     INTEGER      DEFAULT NULL,
+    time         VARCHAR(255) DEFAULT NULL,
+    milliseconds INTEGER      DEFAULT NULL,
+
     CONSTRAINT PK_LAPTIMES PRIMARY KEY (raceId, driverId, lap),
-    CONSTRAINT FK1_LAPTIMES FOREIGN KEY (raceId) REFERENCES races(raceId),
-    CONSTRAINT FK2_LAPTIMES FOREIGN KEY (driverId) REFERENCES drivers(driverid)
+    CONSTRAINT FK1_LAPTIMES FOREIGN KEY (raceId) REFERENCES races (raceId),
+    CONSTRAINT FK2_LAPTIMES FOREIGN KEY (driverId) REFERENCES drivers (driverid)
 );

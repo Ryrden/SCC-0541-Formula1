@@ -12,5 +12,5 @@ CREATE TABLE drivers
     url         VARCHAR(255) NOT NULL,
 
     CONSTRAINT PK_DRIVERS PRIMARY KEY (driverId),
-    UNIQUE (url)
+    CONSTRAINT UK_DRIVERS UNIQUE (url)
 );
