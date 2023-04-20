@@ -1,7 +1,8 @@
+/* CREATE TABLE */
 CREATE TABLE seasons
 (
     year INTEGER      NOT NULL DEFAULT 0,
     url  VARCHAR(255) NOT NULL,
 
     CONSTRAINT PK_SEASONS PRIMARY KEY (year)
-)
+);
