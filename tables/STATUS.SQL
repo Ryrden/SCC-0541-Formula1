@@ -1,4 +1,7 @@
-CREATE TABLE status (
-    statusId INTEGER NOT NULL PRIMARY KEY DEFAULT NULL, -- TODO: SIZE
-    status VARCHAR(255) NOT NULL
+CREATE TABLE status
+(
+    statusId INTEGER      NOT NULL,
+    status   VARCHAR(255) NOT NULL,
+
+    CONSTRAINT PK_STATUS PRIMARY KEY (statusId)
 )
