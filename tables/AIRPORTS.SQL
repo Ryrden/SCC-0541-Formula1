@@ -1,4 +1,5 @@
-CREATE TABLE airports (
+/* CREATE TABLE */
+CREATE TABLE airports(
     id DOUBLE,
     ident VARCHAR(100),
     type VARCHAR(100),
@@ -17,7 +18,4 @@ CREATE TABLE airports (
     home_link VARCHAR(100),
     wikipedia_link VARCHAR(100),
     keywords VARCHAR(100)
-
-    -- TODO: Adicionar chaves estrangeiras
-    -- TODO: Adicionar restrições
 );
