@@ -96,6 +96,48 @@ CREATE TABLE drivers
 /*----------------------------------------------------------*/
 
 /* CREATE TABLE */
+CREATE TABLE seasons
+(
+    year INTEGER      NOT NULL DEFAULT 0,
+    url  VARCHAR(255) NOT NULL,
+
+    CONSTRAINT PK_SEASONS PRIMARY KEY (year)
+);
+
+/*----------------------------------------------------------*/
+
+/* CREATE TABLE */
+CREATE TABLE races
+(
+    raceId      INTEGER      NOT NULL,
+    year        INTEGER      NOT NULL DEFAULT 0,
+    round       INTEGER      NOT NULL DEFAULT 0,
+    circuitId   INTEGER      NOT NULL DEFAULT 0,
+    name        VARCHAR(255) NOT NULL,
+    date        DATE         NOT NULL DEFAULT MAKE_DATE(0000, 00, 00),
+    time        TIME,
+    url         VARCHAR(255),
+    fp1_date    DATE,
+    fp1_time    TIME,
+    fp2_date    DATE,
+    fp2_time    TIME,
+    fp3_date    DATE,
+    fp3_time    TIME,
+    quali_date  DATE,
+    quali_time  TIME,
+    sprint_date DATE,
+    sprint_time TIME,
+
+    CONSTRAINT PK_RACES PRIMARY KEY (raceId),
+    CONSTRAINT UK_RACES UNIQUE (url),
+    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons(year),
+    CONSTRAINT FK2_RACES FOREIGN KEY (circuitId) REFERENCES circuits (circuitid)
+);
+
+/*----------------------------------------------------------*/
+
+
+/* CREATE TABLE */
 CREATE TABLE driver_standings
 (
     driverStandingsId INTEGER NOT NULL,
@@ -167,37 +209,14 @@ CREATE TABLE qualifying
     CONSTRAINT FK3_QUALIFYING FOREIGN KEY (constructorId) references constructors (constructorId)
 );
 
-/*----------------------------------------------------------*/
-
 /* CREATE TABLE */
-CREATE TABLE races
+CREATE TABLE status
 (
-    raceId      INTEGER      NOT NULL,
-    year        INTEGER      NOT NULL DEFAULT 0,
-    round       INTEGER      NOT NULL DEFAULT 0,
-    circuitId   INTEGER      NOT NULL DEFAULT 0,
-    name        VARCHAR(255) NOT NULL,
-    date        DATE         NOT NULL DEFAULT MAKE_DATE(0000, 00, 00),
-    time        TIME,
-    url         VARCHAR(255),
-    fp1_date    DATE,
-    fp1_time    TIME,
-    fp2_date    DATE,
-    fp2_time    TIME,
-    fp3_date    DATE,
-    fp3_time    TIME,
-    quali_date  DATE,
-    quali_time  TIME,
-    sprint_date DATE,
-    sprint_time TIME,
+    statusId INTEGER      NOT NULL,
+    status   VARCHAR(255) NOT NULL,
 
-    CONSTRAINT PK_RACES PRIMARY KEY (raceId),
-    CONSTRAINT UK_RACES UNIQUE (url),
-    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons(year),
-    CONSTRAINT FK2_RACES FOREIGN KEY (circuitId) REFERENCES circuits (circuitid)
+    CONSTRAINT PK_STATUS PRIMARY KEY (statusId)
 );
-
-/*----------------------------------------------------------*/
 
 /* CREATE TABLE */
 CREATE TABLE results
@@ -226,26 +245,4 @@ CREATE TABLE results
     CONSTRAINT FK2_RESULTS FOREIGN KEY (driverId) REFERENCES drivers (driverId),
     CONSTRAINT FK3_RESULTS FOREIGN KEY (constructorId) REFERENCES constructors (constructorId),
     CONSTRAINT FK4_RESULTS FOREIGN KEY (statusId) REFERENCES status (statusId)
-);
-
-/*----------------------------------------------------------*/
-
-/* CREATE TABLE */
-CREATE TABLE seasons
-(
-    year INTEGER      NOT NULL DEFAULT 0,
-    url  VARCHAR(255) NOT NULL,
-
-    CONSTRAINT PK_SEASONS PRIMARY KEY (year)
-);
-
-/*----------------------------------------------------------*/
-
-/* CREATE TABLE */
-CREATE TABLE status
-(
-    statusId INTEGER      NOT NULL,
-    status   VARCHAR(255) NOT NULL,
-
-    CONSTRAINT PK_STATUS PRIMARY KEY (statusId)
 );
