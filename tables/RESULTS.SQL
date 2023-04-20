@@ -1,21 +1,26 @@
 /* CREATE TABLE */
 CREATE TABLE results (
-    resultId SERIAL,
-    raceId SERIAL,
-    driverId SERIAL,
-    constructorId SERIAL,
-    number SERIAL,
-    grid SERIAL,
-    position SERIAL,
-    positionText VARCHAR(1),
-    positionOrder SERIAL,
-    points SERIAL,
-    laps SERIAL,
-    time VARCHAR(100), -- TODO: Rever dps
-    milliseconds DOUBLE,
-    fastestLap DOUBLE,
-    rank DOUBLE,
-    fastestLapTime VARCHAR(100),
-    fastestLapSpeed VARCHAR(100),
-    statusId SMALLSERIAL
+    resultId INTEGER NOT NULL PRIMARY KEY DEFAULT NULL, -- TODO: SIZE
+    raceId INTEGER NOT NULL DEFAULT 0,
+    driverId INTEGER NOT NULL DEFAULT 0,
+    constructorId INTEGER NOT NULL DEFAULT 0,
+    number INTEGER DEFAULT NULL,
+    grid INTEGER NOT NULL DEFAULT 0,
+    position INTEGER DEFAULT NULL,
+    positionText VARCHAR(255) NOT NULL,
+    positionOrder INTEGER NOT NULL DEFAULT 0,
+    points FLOAT NOT NULL DEFAULT 0,
+    laps INTEGER NOT NULL DEFAULT 0,
+    time VARCHAR(255) DEFAULT NULL,                     -- TODO: Rever dps
+    milliseconds INTEGER DEFAULT NULL,                    -- TODO: TYPE PROBLEM
+    fastestLap INTEGER DEFAULT NULL,
+    rank INTEGER DEFAULT 0,
+    fastestLapTime VARCHAR(255) DEFAULT NULL,
+    fastestLapSpeed VARCHAR(255) DEFAULT NULL,
+    statusId INTEGER NOT NULL DEFAULT 0,
+
+    CONSTRAINT FK1_RESULTS FOREIGN KEY (raceId) REFERENCES RACES(raceId),
+    CONSTRAINT FK2_RESULTS FOREIGN KEY (driverId) REFERENCES DRIVER(driverId),
+    CONSTRAINT FK3_RESULTS FOREIGN KEY (constructorId) REFERENCES CONSTRUCTORS(constructorId),
+    CONSTRAINT FK4_RESULTS FOREIGN KEY (statusId) REFERENCES STATUS(statusId)
 );

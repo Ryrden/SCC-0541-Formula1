@@ -1,8 +1,6 @@
 CREATE TABLE seasons (
-    year SMALLSERIAL NOT NULL,
-    url VARCHAR(200) NOT NULL
+    year INTEGER NOT NULL DEFAULT 0,
+    url VARCHAR(255) NOT NULL,
 
-    -- TODO: Achar melhor solução do q varchar(200)
-    -- TODO: Adicionar relações
-    -- TODO: Adicionar restrições
+    CONSTRAINT PK_SEASONS PRIMARY KEY (year, url)
 )

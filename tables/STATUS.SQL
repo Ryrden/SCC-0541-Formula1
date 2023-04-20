@@ -1,7 +1,4 @@
 CREATE TABLE status (
-    statusId SMALLSERIAL NOT NULL,
-    status VARCHAR(40) NOT NULL
-
-    -- TODO: Adicionar relações
-    -- TODO: Adicionar restrições
+    statusId INTEGER NOT NULL PRIMARY KEY DEFAULT NULL, -- TODO: SIZE
+    status VARCHAR(255) NOT NULL
 )
