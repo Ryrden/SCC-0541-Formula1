@@ -7,5 +7,7 @@ CREATE TABLE driver_standings (
     position INT,
     positionText VARCHAR(255),
     wins INT NOT NULL DEFAULT 0,
-    CONSTRAINT PK_DRIVER_STANDINGS PRIMARY KEY (driverStandingsId)
+    CONSTRAINT PK_DRIVER_STANDINGS PRIMARY KEY (driverStandingsId),
+    CONSTRAINT FK1_DRIVER_STANDINGS FOREIGN KEY (raceId) REFERENCES races(raceid),
+    CONSTRAINT FK2_DRIVER_STANDINGS FOREIGN KEY (driverId) REFERENCES drivers(driverid)
 );

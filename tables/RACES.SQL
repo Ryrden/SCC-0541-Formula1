@@ -1,11 +1,11 @@
 /* CREATE TABLE */
 CREATE TABLE races (
-    raceId INT,
-    year INT,
-    round INT,
-    circuitId INT,
-    name VARCHAR(255),
-    date DATE,
+    raceId INT NOT NULL,
+    year INT NOT NULL DEFAULT 0,
+    round INT NOT NULL DEFAULT 0,
+    circuitId INT NOT NULL DEFAULT 0,
+    name VARCHAR(255) NOT NULL,
+    date DATE NOT NULL DEFAULT '0000-00-00',
     time TIME,
     url VARCHAR(255),
     fp1_date DATE,
@@ -17,5 +17,9 @@ CREATE TABLE races (
     quali_date DATE,
     quali_time TIME,
     sprint_date DATE,
-    sprint_time TIME
+    sprint_time TIME,
+    CONSTRAINT PK_RACES PRIMARY KEY (raceId),
+    CONSTRAINT UK_RACES UNIQUE (url),
+    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons(year),
+    CONSTRAINT FK2_RACES FOREIGN KEY (circuitId) REFERENCES circuits(circuitid)
 );
