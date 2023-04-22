@@ -6,9 +6,7 @@ const nullValue = '\\N';
 const csvFilename = process.argv[2];
 const file = fs.readFileSync(csvFilename, 'utf8');
 
-const csvParsed = readCSV(file);
-const headers = Object.keys(csvParsed[0]);
-const sqlInserts = convertToSQLInsertStatement(csvParsed, headers);
+const isNullOrEmpty = (str) => str === nullValue || str === '';
 
 sqlInserts.forEach(sql => {
     fs.appendFileSync('./output.sql', sql + '\n');
@@ -39,7 +37,7 @@ function readCSV(file) {
         const obj = {};
     
         for (const [index, header] of headers.entries()) {
-            obj[header] = currentLine[index] !== nullValue ? currentLine[index] : null;
+            obj[header] = isNullOrEmpty(currentLine[index]) ? null : currentLine[index];
         }
         
         csvParsed.push(obj);
