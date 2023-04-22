@@ -7,14 +7,16 @@ const csvFilename = process.argv[2];
 const file = fs.readFileSync(csvFilename, 'utf8');
 
 const csvParsed = readCSV(file);
-console.log(csvParsed)
 const headers = Object.keys(csvParsed[0]);
-const sql = convertToSQLInsertStatement(csvParsed, headers);
-//console.log(sql);
+const sqlInserts = convertToSQLInsertStatement(csvParsed, headers);
+
+sqlInserts.forEach(sql => {
+    fs.appendFileSync('./output.sql', sql + '\n');
+})
 
 // TODO: Tratar espaços vazios em Values
 // TODO: Tratar Datas de inserção
-// TODO: Tratar caracteres especiais 
+// TODO: Tratar virgula no final da linha
 
 /**
  * Read a CSV file and return an array of objects
@@ -29,11 +31,15 @@ function readCSV(file) {
 
     lines.shift(); // Remove headers
     for (const line of lines) {
-        const currentline = line.split(",").map(value => value.replace(/"/g, ''));
+        const currentLine = line.split(",").map(value => value.replace(/"/g, ''));
+        if (currentLine.length > headers.length){
+            //There is at least one value with comma
+            currentLine[headers.length - 1] = currentLine.slice(headers.length - 1).join(',');
+        }
         const obj = {};
     
         for (const [index, header] of headers.entries()) {
-            obj[header] = currentline[index] != nullValue ? currentline[index] : null;
+            obj[header] = currentLine[index] !== nullValue ? currentLine[index] : null;
         }
         
         csvParsed.push(obj);
