@@ -61,7 +61,7 @@ function convertToSQLInsertStatement(object, headers) {
     for(const row of object) {
         for(const header of headers) {
             if (isNaN(row[header])) {
-                row[header] = `'${row[header]}'`;
+                row[header] = `"${row[header]}"`;
             }else{
                 row[header] = `${row[header]}`;
             }
