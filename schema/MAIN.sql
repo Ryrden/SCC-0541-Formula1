@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS airports
 (
     id                INT,
-    ident             VARCHAR(8)   NOT NULL,
+    ident             VARCHAR(16)  NOT NULL,
     type              VARCHAR(32)  NOT NULL,
     name              VARCHAR(256) NOT NULL,
     latitude_deg      NUMERIC(25, 20),
@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS airports
     elevation_ft      INT,
     continent         CHAR(2)      NOT NULL,
     iso_country       CHAR(2),
-    iso_region        CHAR(8),
+    iso_region        CHAR(16),
     municipality      VARCHAR(128),
     scheduled_service VARCHAR(3),
-    gps_code          CHAR(4),
+    gps_code          CHAR(8),
     iata_code         CHAR(3),
     local_code        VARCHAR(64),
     home_link         VARCHAR(256),
