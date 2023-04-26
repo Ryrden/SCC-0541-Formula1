@@ -1,5 +1,5 @@
 /* CREATE TABLE */
-CREATE TABLE results
+CREATE TABLE IF NOT EXISTS results
 (
     resultId        INTEGER      NOT NULL,
     raceId          INTEGER      NOT NULL DEFAULT 0,

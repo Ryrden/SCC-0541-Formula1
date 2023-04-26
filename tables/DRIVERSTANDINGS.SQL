@@ -1,5 +1,5 @@
 /* CREATE TABLE */
-CREATE TABLE driver_standings
+CREATE TABLE IF NOT EXISTS driver_standings
 (
     driverStandingsId INTEGER NOT NULL,
     raceId            INTEGER NOT NULL DEFAULT 0,

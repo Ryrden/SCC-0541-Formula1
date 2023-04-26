@@ -1,5 +1,5 @@
 /* CREATE TABLE */
-CREATE TABLE status
+CREATE TABLE IF NOT EXISTS status
 (
     statusId INTEGER      NOT NULL,
     status   VARCHAR(255) NOT NULL,

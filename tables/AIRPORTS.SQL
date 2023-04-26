@@ -1,5 +1,5 @@
 /* CREATE TABLE */
-CREATE TABLE airports
+CREATE TABLE IF NOT EXISTS airports
 (
     id                INTEGER,
     ident             VARCHAR(100) NOT NULL,

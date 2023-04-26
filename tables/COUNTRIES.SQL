@@ -1,5 +1,5 @@
 /* CREATE TABLE */
-CREATE TABLE countries
+CREATE TABLE IF NOT EXISTS countries
 (
     id             INTEGER NOT NULL,
     code           VARCHAR(100),

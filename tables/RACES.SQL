@@ -1,5 +1,5 @@
 /* CREATE TABLE */
-CREATE TABLE races
+CREATE TABLE IF NOT EXISTS races
 (
     raceId      INTEGER      NOT NULL,
     year        INTEGER      NOT NULL DEFAULT 0,
@@ -22,6 +22,6 @@ CREATE TABLE races
 
     CONSTRAINT PK_RACES PRIMARY KEY (raceId),
     CONSTRAINT UK_RACES UNIQUE (url),
-    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons(year),
+    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons (year),
     CONSTRAINT FK2_RACES FOREIGN KEY (circuitId) REFERENCES circuits (circuitid)
 );

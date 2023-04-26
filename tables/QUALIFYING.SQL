@@ -1,11 +1,11 @@
 /* CREATE TABLE */
-CREATE TABLE qualifying
+CREATE TABLE IF NOT EXISTS qualifying
 (
-    qualifyId     INTEGER             NOT NULL,
-    raceId        INTEGER             NOT NULL,
-    driverId      INTEGER             NOT NULL,
-    constructorId INTEGER             NOT NULL,
-    number        INTEGER             NOT NULL,
+    qualifyId     INTEGER NOT NULL,
+    raceId        INTEGER NOT NULL,
+    driverId      INTEGER NOT NULL,
+    constructorId INTEGER NOT NULL,
+    number        INTEGER NOT NULL,
     position      INTEGER      DEFAULT NULL,
     q1            VARCHAR(255) DEFAULT NULL, -- TODO: Rever tipo desse tempo aqui
     q2            VARCHAR(255) DEFAULT NULL,

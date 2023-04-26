@@ -1,5 +1,5 @@
 /* CREATE TABLE */
-CREATE TABLE circuits
+CREATE TABLE IF NOT EXISTS circuits
 (
     circuitId  INTEGER      NOT NULL, -- TODO: SIZE
     circuitRef VARCHAR(255) NOT NULL,

@@ -1,5 +1,5 @@
 /* CREATE TABLE */
-CREATE TABLE constructors
+CREATE TABLE IF NOT EXISTS constructors
 (
     constructorId  INTEGER      NOT NULL,
     constructorRef VARCHAR(255) NOT NULL,

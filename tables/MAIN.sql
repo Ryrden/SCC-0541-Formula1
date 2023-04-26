@@ -130,7 +130,7 @@ CREATE TABLE races
 
     CONSTRAINT PK_RACES PRIMARY KEY (raceId),
     CONSTRAINT UK_RACES UNIQUE (url),
-    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons(year),
+    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons (year),
     CONSTRAINT FK2_RACES FOREIGN KEY (circuitId) REFERENCES circuits (circuitid)
 );
 
@@ -193,11 +193,11 @@ CREATE TABLE pit_stops
 /* CREATE TABLE */
 CREATE TABLE qualifying
 (
-    qualifyId     INTEGER             NOT NULL,
-    raceId        INTEGER             NOT NULL,
-    driverId      INTEGER             NOT NULL,
-    constructorId INTEGER             NOT NULL,
-    number        INTEGER             NOT NULL,
+    qualifyId     INTEGER NOT NULL,
+    raceId        INTEGER NOT NULL,
+    driverId      INTEGER NOT NULL,
+    constructorId INTEGER NOT NULL,
+    number        INTEGER NOT NULL,
     position      INTEGER      DEFAULT NULL,
     q1            VARCHAR(255) DEFAULT NULL, -- TODO: Rever tipo desse tempo aqui
     q2            VARCHAR(255) DEFAULT NULL,
