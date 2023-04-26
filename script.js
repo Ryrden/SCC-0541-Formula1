@@ -63,7 +63,7 @@ const convertToSQLInsertStatement = (object, headers, databaseName) => {
 
     function quoteIfNeeded(value) {
         if (isNaN(value) && value !== 'null') {
-            if (typeof value !== 'undefined' && value.includes("'")){
+            if (value.includes("'")){
                 value = value.replace(/'/g, "''");
             }
             return `'${value}'`;
