@@ -1,6 +1,6 @@
 # Projeto 1 - Fórmula 1 (Criação e inserção de dados)
 
-![modelagem ER](https://i.imgur.com/qJXBMHG.png);
+![modelagem ER](https://i.imgur.com/qJXBMHG.png)
 > Projeto 1 da disciplina SCC0541 - Laboratório de Banco de Dados
 
 ## Pré-requisitos
@@ -9,7 +9,7 @@ Há duas formas de executar o projeto, a primeira é utilizando o `docker` e a s
 
 Portanto, caso opte por utilizar o `docker`, é necessário que o mesmo esteja instalado em sua máquina. Para isso, siga as instruções de instalação do [docker](https://docs.docker.com/engine/install/) e do [docker-compose](https://docs.docker.com/compose/install/).
 
-Caso opte por utilizar o `GUI do POSTGRESQL`, é necessário que o mesmo esteja instalado em sua máquina. Para isso, siga as instruções de instalação do [postgresql](https://www.postgresql.org/download/).
+Caso opte por utilizar o `GUI do POSTGRESQL` (PG_ADMIN), é necessário que o mesmo esteja instalado em sua máquina. Para isso, siga as instruções de instalação do [postgresql](https://www.pgadmin.org/download/).
 
 ## Executando o projeto
 
@@ -33,7 +33,7 @@ se deseja apagar os dados do banco de dados, basta executar o mesmo comando ante
 docker compose down -v
 ```
 
-### A partir da GUI do POSTGRESQL ou qualquer outra IDE
+### A partir da GUI do POSTGRESQL ou qualquer outra IDE adequada
 
 A partir daqui você deve conectar ao banco de dados utilizando as seguintes credenciais:
 
@@ -47,3 +47,5 @@ A partir daqui você deve conectar ao banco de dados utilizando as seguintes cre
 ## Criando tabelas e inserindo dados
 
 Após isso, basta executar o script `MAIN.SQL` dentro da pasta `schema/` para criar as tabelas e o script `COPY_SCRIPT.SQL` dentro da pasta `database/` para inserir os dados.
+
+Para inserir os dados pelo `PG_ADMIN`, basta utilizar a interface de Import/export para arquivos csv, para saber mais, acesse [Import/Export Data](https://www.pgadmin.org/docs/pgadmin4/development/import_export_data.html).
