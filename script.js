@@ -13,24 +13,26 @@ const insertsDirectory = './inserts';
  */
 const readCSV = (file) => {
     const [headerLine, ...contentLines] = file.split('\n');
+    if (isLastLineEmpty()) {
+        contentLines.pop();
+    }
     const headers = parseHeaders(headerLine);
     const csvParsed = contentLines.map((line) => parseLine(line, headers));
 
     return [csvParsed, headers];
+
+    function isLastLineEmpty(){
+        return contentLines[contentLines.length - 1] === '';
+    }
 
     function parseHeaders(headerLine) {
         return headerLine.split(',').map((header) => header.replace(/"/g, ''));
     };
 
     function parseLine(line, headers) {
-        const values = line.split(',').map((value) => value.replace(/"/g, ''));
-        const hasExtraValues = values.length > headers.length;
-
-        if (hasExtraValues) {
-            const remainingValues = values.slice(headers.length - 1);
-            const lastValue = remainingValues.join(',');
-            values[headers.length - 1] = lastValue;
-        }
+        // Split by comma, but ignore commas inside quotes
+        const regex = /,(?=(?:[^"]|"[^"]*")*$)/g;
+        const values = line.split(regex).map((value) => value.replace(/"/g, ''));
 
         const obj = {};
         headers.forEach((header, index) => {
@@ -55,13 +57,16 @@ const readCSV = (file) => {
 const convertToSQLInsertStatement = (object, headers, databaseName) => {
     return object.map((row) => {
         const values = headers.map((header) => quoteIfNeeded(row[header]));
-        const sql = `INSERT INTO ${databaseName} (${headers.join(',')}) VALUES (${values.join(',')})`;
+        const sql = `INSERT INTO ${databaseName} (${headers.join(',')}) VALUES (${values.join(',')});`;
         return sql;
     });
 
     function quoteIfNeeded(value) {
         if (isNaN(value) && value !== 'null') {
-            return `"${value}"`;
+            if (typeof value !== 'undefined' && value.includes("'")){
+                value = value.replace(/'/g, "''");
+            }
+            return `'${value}'`;
         }
         return value;
     };
