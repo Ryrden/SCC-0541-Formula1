@@ -1,6 +1,6 @@
 COPY airports
     FROM '/database/airports.csv'
-    WITH (FORMAT CSV, HEADER true, DELIMITER ',', QUOTE '"');
+    WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '', QUOTE '"');
 
 COPY circuits
     FROM '/database/circuits.csv'
@@ -12,7 +12,7 @@ COPY constructors
 
 COPY countries
     FROM '/database/countries.csv'
-    WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '\N', QUOTE '"');
+    WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '', QUOTE '"');
 
 COPY seasons
     FROM '/database/seasons.csv'
@@ -32,15 +32,15 @@ COPY races
 
 COPY driver_standings
     FROM '/database/driver_standings.csv'
-    WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '\N', QUOTE '"');
+    WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '', QUOTE '"');
 
 COPY lap_times
     FROM '/database/lap_times.csv'
-    WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '\N', QUOTE '"');
+    WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '', QUOTE '"');
 
 COPY pit_stops
     FROM '/database/pit_stops.csv'
-    WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '\N', QUOTE '"');
+    WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '', QUOTE '"');
 
 COPY qualifying
     FROM  '/database/qualifying.csv'
