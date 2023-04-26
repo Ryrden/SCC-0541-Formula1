@@ -28,14 +28,14 @@ CREATE TABLE IF NOT EXISTS airports
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS circuits
 (
-    circuitId  INTEGER      NOT NULL,
+    circuitId  INT      NOT NULL,
     circuitRef VARCHAR(255) NOT NULL,
     name       VARCHAR(255) NOT NULL,
     location   VARCHAR(255),
     country    VARCHAR(255),
     lat        FLOAT,
     lng        FLOAT,
-    alt        INTEGER,
+    alt        INT,
     url        VARCHAR(255) NOT NULL,
 
     CONSTRAINT PK_CIRCUITS PRIMARY KEY (circuitId),
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS circuits
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS constructors
 (
-    constructorId  INTEGER      NOT NULL,
+    constructorId  INT      NOT NULL,
     constructorRef VARCHAR(255) NOT NULL,
     name           VARCHAR(255) NOT NULL,
     nationality    VARCHAR(255) DEFAULT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS constructors
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS countries
 (
-    id             INTEGER NOT NULL,
+    id             INT NOT NULL,
     code           VARCHAR(100),
     name           VARCHAR(100),
     continent      VARCHAR(100),
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS countries
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS seasons
 (
-    year INTEGER      NOT NULL DEFAULT 0,
+    year INT      NOT NULL DEFAULT 0,
     url  VARCHAR(255) NOT NULL,
 
     CONSTRAINT PK_SEASONS PRIMARY KEY (year)
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS seasons
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS status
 (
-    statusId INTEGER      NOT NULL,
+    statusId INT      NOT NULL,
     status   VARCHAR(255) NOT NULL,
 
     CONSTRAINT PK_STATUS PRIMARY KEY (statusId)
@@ -94,9 +94,9 @@ CREATE TABLE IF NOT EXISTS status
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS drivers
 (
-    driverId    INTEGER      NOT NULL,
+    driverId    INT      NOT NULL,
     driverRef   VARCHAR(255) NOT NULL,
-    number      INTEGER      DEFAULT NULL,
+    number      INT      DEFAULT NULL,
     code        VARCHAR(3)   DEFAULT NULL,
     forename    VARCHAR(255) NOT NULL,
     surname     VARCHAR(255) NOT NULL,
@@ -112,10 +112,10 @@ CREATE TABLE IF NOT EXISTS drivers
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS races
 (
-    raceId      INTEGER      NOT NULL,
-    year        INTEGER      NOT NULL DEFAULT 0,
-    round       INTEGER      NOT NULL DEFAULT 0,
-    circuitId   INTEGER      NOT NULL DEFAULT 0,
+    raceId      INT      NOT NULL,
+    year        INT      NOT NULL DEFAULT 0,
+    round       INT      NOT NULL DEFAULT 0,
+    circuitId   INT      NOT NULL DEFAULT 0,
     name        VARCHAR(255) NOT NULL,
     date        DATE         NOT NULL DEFAULT MAKE_DATE(0000, 00, 00),
     time        TIME,
@@ -142,13 +142,13 @@ CREATE TABLE IF NOT EXISTS races
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS driver_standings
 (
-    driverStandingsId INTEGER NOT NULL,
-    raceId            INTEGER NOT NULL DEFAULT 0,
-    driverId          INTEGER NOT NULL DEFAULT 0,
+    driverStandingsId INT NOT NULL,
+    raceId            INT NOT NULL DEFAULT 0,
+    driverId          INT NOT NULL DEFAULT 0,
     points            FLOAT   NOT NULL DEFAULT 0,
-    position          INTEGER,
+    position          INT,
     positionText      VARCHAR(255),
-    wins              INTEGER NOT NULL DEFAULT 0,
+    wins              INT NOT NULL DEFAULT 0,
 
     CONSTRAINT PK_DRIVER_STANDINGS PRIMARY KEY (driverStandingsId),
     CONSTRAINT FK1_DRIVER_STANDINGS FOREIGN KEY (raceId) REFERENCES races (raceid) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -159,12 +159,12 @@ CREATE TABLE IF NOT EXISTS driver_standings
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS lap_times
 (
-    raceId       INTEGER NOT NULL,
-    driverId     INTEGER NOT NULL,
-    lap          INTEGER NOT NULL,
-    position     INTEGER      DEFAULT NULL,
+    raceId       INT NOT NULL,
+    driverId     INT NOT NULL,
+    lap          INT NOT NULL,
+    position     INT      DEFAULT NULL,
     time         VARCHAR(255) DEFAULT NULL,
-    milliseconds INTEGER      DEFAULT NULL,
+    milliseconds INT      DEFAULT NULL,
 
     CONSTRAINT PK_LAPTIMES PRIMARY KEY (raceId, driverId, lap),
     CONSTRAINT FK1_LAPTIMES FOREIGN KEY (raceId) REFERENCES races (raceId) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -175,13 +175,13 @@ CREATE TABLE IF NOT EXISTS lap_times
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS pit_stops
 (
-    raceId       INTEGER NOT NULL,
-    driverId     INTEGER NOT NULL,
-    stop         INTEGER NOT NULL,
-    lap          INTEGER      DEFAULT NULL,
+    raceId       INT NOT NULL,
+    driverId     INT NOT NULL,
+    stop         INT NOT NULL,
+    lap          INT      DEFAULT NULL,
     time         TIME         DEFAULT NULL,
     duration     VARCHAR(255) DEFAULT NULL,
-    milliseconds INTEGER      DEFAULT NULL,
+    milliseconds INT      DEFAULT NULL,
 
     CONSTRAINT PK_PITSTOPS PRIMARY KEY (raceId, driverId, stop),
     CONSTRAINT FK1_PITSTOPS FOREIGN KEY (raceId) references races (raceId) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -192,12 +192,12 @@ CREATE TABLE IF NOT EXISTS pit_stops
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS qualifying
 (
-    qualifyId     INTEGER NOT NULL,
-    raceId        INTEGER NOT NULL,
-    driverId      INTEGER NOT NULL,
-    constructorId INTEGER NOT NULL,
-    number        INTEGER NOT NULL,
-    position      INTEGER      DEFAULT NULL,
+    qualifyId     INT NOT NULL,
+    raceId        INT NOT NULL,
+    driverId      INT NOT NULL,
+    constructorId INT NOT NULL,
+    number        INT NOT NULL,
+    position      INT      DEFAULT NULL,
     q1            VARCHAR(255) DEFAULT NULL,
     q2            VARCHAR(255) DEFAULT NULL,
     q3            VARCHAR(255) DEFAULT NULL,
@@ -212,24 +212,24 @@ CREATE TABLE IF NOT EXISTS qualifying
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS results
 (
-    resultId        INTEGER      NOT NULL,
-    raceId          INTEGER      NOT NULL DEFAULT 0,
-    driverId        INTEGER      NOT NULL DEFAULT 0,
-    constructorId   INTEGER      NOT NULL DEFAULT 0,
-    number          INTEGER,
-    grid            INTEGER      NOT NULL DEFAULT 0,
-    position        INTEGER               DEFAULT NULL,
+    resultId        INT      NOT NULL,
+    raceId          INT      NOT NULL DEFAULT 0,
+    driverId        INT      NOT NULL DEFAULT 0,
+    constructorId   INT      NOT NULL DEFAULT 0,
+    number          INT,
+    grid            INT      NOT NULL DEFAULT 0,
+    position        INT               DEFAULT NULL,
     positionText    VARCHAR(255) NOT NULL,
-    positionOrder   INTEGER      NOT NULL DEFAULT 0,
+    positionOrder   INT      NOT NULL DEFAULT 0,
     points          FLOAT        NOT NULL DEFAULT 0,
-    laps            INTEGER      NOT NULL DEFAULT 0,
+    laps            INT      NOT NULL DEFAULT 0,
     time            VARCHAR(255)          DEFAULT NULL,
-    milliseconds    INTEGER               DEFAULT NULL,
-    fastestLap      INTEGER               DEFAULT NULL,
-    rank            INTEGER               DEFAULT 0,
+    milliseconds    INT               DEFAULT NULL,
+    fastestLap      INT               DEFAULT NULL,
+    rank            INT               DEFAULT 0,
     fastestLapTime  VARCHAR(255)          DEFAULT NULL,
     fastestLapSpeed VARCHAR(255)          DEFAULT NULL,
-    statusId        INTEGER      NOT NULL DEFAULT 0,
+    statusId        INT      NOT NULL DEFAULT 0,
 
     CONSTRAINT PK_RESULTS PRIMARY KEY (resultId),
     CONSTRAINT FK1_RESULTS FOREIGN KEY (raceId) REFERENCES races (raceId) ON UPDATE CASCADE ON DELETE CASCADE,
