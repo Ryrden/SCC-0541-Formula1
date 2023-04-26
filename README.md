@@ -46,4 +46,4 @@ A partir daqui você deve conectar ao banco de dados utilizando as seguintes cre
 
 ## Criando tabelas e inserindo dados
 
-Após isso, basta executar o script `MAIN.SQL` dentro da pasta `database/` para criar as tabelas e o script `SCRIPT.SQL` na raiz do projeto para inserir os dados nas tabelas.
+Após isso, basta executar o script `MAIN.SQL` dentro da pasta `schema/` para criar as tabelas e o script `COPY_SCRIPT.SQL` dentro da pasta `database/` para inserir os dados.
