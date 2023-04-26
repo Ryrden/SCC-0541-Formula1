@@ -1,8 +1,0 @@
-/* CREATE TABLE */
-CREATE TABLE IF NOT EXISTS status
-(
-    statusId INTEGER      NOT NULL,
-    status   VARCHAR(255) NOT NULL,
-
-    CONSTRAINT PK_STATUS PRIMARY KEY (statusId)
-);
