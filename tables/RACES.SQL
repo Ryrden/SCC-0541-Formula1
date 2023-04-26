@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS races
     round       INTEGER      NOT NULL DEFAULT 0,
     circuitId   INTEGER      NOT NULL DEFAULT 0,
     name        VARCHAR(255) NOT NULL,
-    date        DATE         NOT NULL DEFAULT "0000-00-00",
+    date        DATE         NOT NULL DEFAULT MAKE_DATE(0000, 00, 00),
     time        TIME,
     url         VARCHAR(255),
     fp1_date    DATE,
@@ -22,6 +22,6 @@ CREATE TABLE IF NOT EXISTS races
 
     CONSTRAINT PK_RACES PRIMARY KEY (raceId),
     CONSTRAINT UK_RACES UNIQUE (url),
-    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons (year),
+    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons(year),
     CONSTRAINT FK2_RACES FOREIGN KEY (circuitId) REFERENCES circuits (circuitid)
 );
