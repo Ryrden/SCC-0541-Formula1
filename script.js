@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const nullValue = '\\N';
 
-const csvDirectory = './database';
+const csvDirectory = './database/tables_csv';
 const insertsDirectory = './inserts';
 
 /**
