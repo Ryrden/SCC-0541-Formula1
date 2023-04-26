@@ -1,6 +1,5 @@
-/* CREATE ALL TABLE'S IN DATABASE */
-
-CREATE TABLE airports
+/* CREATE TABLE */
+CREATE TABLE IF NOT EXISTS airports
 (
     id                INTEGER,
     ident             VARCHAR(100) NOT NULL,
@@ -24,11 +23,10 @@ CREATE TABLE airports
     CONSTRAINT PK_AIRPORTS PRIMARY KEY (id),
     CONSTRAINT UK_AIRPORTS UNIQUE (iata_code)
 );
-
 /*----------------------------------------------------------*/
 
 /* CREATE TABLE */
-CREATE TABLE circuits
+CREATE TABLE IF NOT EXISTS circuits
 (
     circuitId  INTEGER      NOT NULL, -- TODO: SIZE
     circuitRef VARCHAR(255) NOT NULL,
@@ -43,11 +41,10 @@ CREATE TABLE circuits
     CONSTRAINT PK_CIRCUITS PRIMARY KEY (circuitId),
     CONSTRAINT UK_CIRCUITS UNIQUE (URL)
 );
-
 /*----------------------------------------------------------*/
 
 /* CREATE TABLE */
-CREATE TABLE constructors
+CREATE TABLE IF NOT EXISTS constructors
 (
     constructorId  INTEGER      NOT NULL,
     constructorRef VARCHAR(255) NOT NULL,
@@ -58,11 +55,10 @@ CREATE TABLE constructors
     CONSTRAINT PK_CONSTRUCTORS PRIMARY KEY (constructorId),
     CONSTRAINT UK_CONSTRUCTORS UNIQUE (name)
 );
-
 /*----------------------------------------------------------*/
 
 /* CREATE TABLE */
-CREATE TABLE countries
+CREATE TABLE IF NOT EXISTS countries
 (
     id             INTEGER NOT NULL,
     code           VARCHAR(100),
@@ -73,11 +69,30 @@ CREATE TABLE countries
 
     CONSTRAINT PK_COUNTRIES PRIMARY KEY (id)
 );
-
 /*----------------------------------------------------------*/
 
 /* CREATE TABLE */
-CREATE TABLE drivers
+CREATE TABLE IF NOT EXISTS seasons
+(
+    year INTEGER      NOT NULL DEFAULT 0,
+    url  VARCHAR(255) NOT NULL,
+
+    CONSTRAINT PK_SEASONS PRIMARY KEY (year)
+);
+/*----------------------------------------------------------*/
+
+/* CREATE TABLE */
+CREATE TABLE IF NOT EXISTS status
+(
+    statusId INTEGER      NOT NULL,
+    status   VARCHAR(255) NOT NULL,
+
+    CONSTRAINT PK_STATUS PRIMARY KEY (statusId)
+);
+/*----------------------------------------------------------*/
+
+/* CREATE TABLE */
+CREATE TABLE IF NOT EXISTS drivers
 (
     driverId    INTEGER      NOT NULL,
     driverRef   VARCHAR(255) NOT NULL,
@@ -92,22 +107,10 @@ CREATE TABLE drivers
     CONSTRAINT PK_DRIVERS PRIMARY KEY (driverId),
     CONSTRAINT UK_DRIVERS UNIQUE (url)
 );
-
 /*----------------------------------------------------------*/
 
 /* CREATE TABLE */
-CREATE TABLE seasons
-(
-    year INTEGER      NOT NULL DEFAULT 0,
-    url  VARCHAR(255) NOT NULL,
-
-    CONSTRAINT PK_SEASONS PRIMARY KEY (year)
-);
-
-/*----------------------------------------------------------*/
-
-/* CREATE TABLE */
-CREATE TABLE races
+CREATE TABLE IF NOT EXISTS races
 (
     raceId      INTEGER      NOT NULL,
     year        INTEGER      NOT NULL DEFAULT 0,
@@ -130,15 +133,14 @@ CREATE TABLE races
 
     CONSTRAINT PK_RACES PRIMARY KEY (raceId),
     CONSTRAINT UK_RACES UNIQUE (url),
-    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons (year),
+    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons(year),
     CONSTRAINT FK2_RACES FOREIGN KEY (circuitId) REFERENCES circuits (circuitid)
 );
-
 /*----------------------------------------------------------*/
 
 
 /* CREATE TABLE */
-CREATE TABLE driver_standings
+CREATE TABLE IF NOT EXISTS driver_standings
 (
     driverStandingsId INTEGER NOT NULL,
     raceId            INTEGER NOT NULL DEFAULT 0,
@@ -152,11 +154,10 @@ CREATE TABLE driver_standings
     CONSTRAINT FK1_DRIVER_STANDINGS FOREIGN KEY (raceId) REFERENCES races (raceid),
     CONSTRAINT FK2_DRIVER_STANDINGS FOREIGN KEY (driverId) REFERENCES drivers (driverid)
 );
-
 /*----------------------------------------------------------*/
 
 /* CREATE TABLE */
-CREATE TABLE laptimes
+CREATE TABLE IF NOT EXISTS lap_times
 (
     raceId       INTEGER NOT NULL,
     driverId     INTEGER NOT NULL,
@@ -169,11 +170,10 @@ CREATE TABLE laptimes
     CONSTRAINT FK1_LAPTIMES FOREIGN KEY (raceId) REFERENCES races (raceId),
     CONSTRAINT FK2_LAPTIMES FOREIGN KEY (driverId) REFERENCES drivers (driverid)
 );
-
 /*----------------------------------------------------------*/
 
 /* CREATE TABLE */
-CREATE TABLE pit_stops
+CREATE TABLE IF NOT EXISTS pit_stops
 (
     raceId       INTEGER NOT NULL,
     driverId     INTEGER NOT NULL,
@@ -187,11 +187,10 @@ CREATE TABLE pit_stops
     CONSTRAINT FK1_PITSTOPS FOREIGN KEY (raceId) references races (raceId),
     CONSTRAINT FK2_PITSTOPS FOREIGN KEY (driverId) references drivers (driverId)
 );
-
 /*----------------------------------------------------------*/
 
 /* CREATE TABLE */
-CREATE TABLE qualifying
+CREATE TABLE IF NOT EXISTS qualifying
 (
     qualifyId     INTEGER NOT NULL,
     raceId        INTEGER NOT NULL,
@@ -208,18 +207,10 @@ CREATE TABLE qualifying
     CONSTRAINT FK2_QUALIFYING FOREIGN KEY (driverId) references drivers (driverId),
     CONSTRAINT FK3_QUALIFYING FOREIGN KEY (constructorId) references constructors (constructorId)
 );
+/*----------------------------------------------------------*/
 
 /* CREATE TABLE */
-CREATE TABLE status
-(
-    statusId INTEGER      NOT NULL,
-    status   VARCHAR(255) NOT NULL,
-
-    CONSTRAINT PK_STATUS PRIMARY KEY (statusId)
-);
-
-/* CREATE TABLE */
-CREATE TABLE results
+CREATE TABLE IF NOT EXISTS results
 (
     resultId        INTEGER      NOT NULL,
     raceId          INTEGER      NOT NULL DEFAULT 0,
