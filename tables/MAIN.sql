@@ -28,14 +28,14 @@ CREATE TABLE IF NOT EXISTS airports
 /* CREATE TABLE */
 CREATE TABLE IF NOT EXISTS circuits
 (
-    circuitId  INTEGER      NOT NULL, -- TODO: SIZE
+    circuitId  INTEGER      NOT NULL,
     circuitRef VARCHAR(255) NOT NULL,
     name       VARCHAR(255) NOT NULL,
     location   VARCHAR(255),
     country    VARCHAR(255),
     lat        FLOAT,
     lng        FLOAT,
-    alt        INTEGER,               -- TODO: SIZE
+    alt        INTEGER,
     url        VARCHAR(255) NOT NULL,
 
     CONSTRAINT PK_CIRCUITS PRIMARY KEY (circuitId),
@@ -133,8 +133,8 @@ CREATE TABLE IF NOT EXISTS races
 
     CONSTRAINT PK_RACES PRIMARY KEY (raceId),
     CONSTRAINT UK_RACES UNIQUE (url),
-    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons(year),
-    CONSTRAINT FK2_RACES FOREIGN KEY (circuitId) REFERENCES circuits (circuitid)
+    CONSTRAINT FK1_RACES FOREIGN KEY (year) REFERENCES seasons(year) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT FK2_RACES FOREIGN KEY (circuitId) REFERENCES circuits (circuitid) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 /*----------------------------------------------------------*/
 
@@ -151,8 +151,8 @@ CREATE TABLE IF NOT EXISTS driver_standings
     wins              INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT PK_DRIVER_STANDINGS PRIMARY KEY (driverStandingsId),
-    CONSTRAINT FK1_DRIVER_STANDINGS FOREIGN KEY (raceId) REFERENCES races (raceid),
-    CONSTRAINT FK2_DRIVER_STANDINGS FOREIGN KEY (driverId) REFERENCES drivers (driverid)
+    CONSTRAINT FK1_DRIVER_STANDINGS FOREIGN KEY (raceId) REFERENCES races (raceid) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FK2_DRIVER_STANDINGS FOREIGN KEY (driverId) REFERENCES drivers (driverid) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 /*----------------------------------------------------------*/
 
@@ -167,8 +167,8 @@ CREATE TABLE IF NOT EXISTS lap_times
     milliseconds INTEGER      DEFAULT NULL,
 
     CONSTRAINT PK_LAPTIMES PRIMARY KEY (raceId, driverId, lap),
-    CONSTRAINT FK1_LAPTIMES FOREIGN KEY (raceId) REFERENCES races (raceId),
-    CONSTRAINT FK2_LAPTIMES FOREIGN KEY (driverId) REFERENCES drivers (driverid)
+    CONSTRAINT FK1_LAPTIMES FOREIGN KEY (raceId) REFERENCES races (raceId) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FK2_LAPTIMES FOREIGN KEY (driverId) REFERENCES drivers (driverid) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 /*----------------------------------------------------------*/
 
@@ -184,8 +184,8 @@ CREATE TABLE IF NOT EXISTS pit_stops
     milliseconds INTEGER      DEFAULT NULL,
 
     CONSTRAINT PK_PITSTOPS PRIMARY KEY (raceId, driverId, stop),
-    CONSTRAINT FK1_PITSTOPS FOREIGN KEY (raceId) references races (raceId),
-    CONSTRAINT FK2_PITSTOPS FOREIGN KEY (driverId) references drivers (driverId)
+    CONSTRAINT FK1_PITSTOPS FOREIGN KEY (raceId) references races (raceId) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FK2_PITSTOPS FOREIGN KEY (driverId) references drivers (driverId) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 /*----------------------------------------------------------*/
 
@@ -198,14 +198,14 @@ CREATE TABLE IF NOT EXISTS qualifying
     constructorId INTEGER NOT NULL,
     number        INTEGER NOT NULL,
     position      INTEGER      DEFAULT NULL,
-    q1            VARCHAR(255) DEFAULT NULL, -- TODO: Rever tipo desse tempo aqui
+    q1            VARCHAR(255) DEFAULT NULL,
     q2            VARCHAR(255) DEFAULT NULL,
     q3            VARCHAR(255) DEFAULT NULL,
 
     CONSTRAINT PK_QUALIFYING PRIMARY KEY (qualifyId),
-    CONSTRAINT FK1_QUALIFYING FOREIGN KEY (raceId) references races (raceId),
-    CONSTRAINT FK2_QUALIFYING FOREIGN KEY (driverId) references drivers (driverId),
-    CONSTRAINT FK3_QUALIFYING FOREIGN KEY (constructorId) references constructors (constructorId)
+    CONSTRAINT FK1_QUALIFYING FOREIGN KEY (raceId) references races (raceId) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FK2_QUALIFYING FOREIGN KEY (driverId) references drivers (driverId) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT FK3_QUALIFYING FOREIGN KEY (constructorId) references constructors (constructorId) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 /*----------------------------------------------------------*/
 
@@ -223,8 +223,8 @@ CREATE TABLE IF NOT EXISTS results
     positionOrder   INTEGER      NOT NULL DEFAULT 0,
     points          FLOAT        NOT NULL DEFAULT 0,
     laps            INTEGER      NOT NULL DEFAULT 0,
-    time            VARCHAR(255)          DEFAULT NULL, -- TODO: Rever dps
-    milliseconds    INTEGER               DEFAULT NULL, -- TODO: TYPE PROBLEM
+    time            VARCHAR(255)          DEFAULT NULL,
+    milliseconds    INTEGER               DEFAULT NULL,
     fastestLap      INTEGER               DEFAULT NULL,
     rank            INTEGER               DEFAULT 0,
     fastestLapTime  VARCHAR(255)          DEFAULT NULL,
@@ -232,8 +232,8 @@ CREATE TABLE IF NOT EXISTS results
     statusId        INTEGER      NOT NULL DEFAULT 0,
 
     CONSTRAINT PK_RESULTS PRIMARY KEY (resultId),
-    CONSTRAINT FK1_RESULTS FOREIGN KEY (raceId) REFERENCES races (raceId),
-    CONSTRAINT FK2_RESULTS FOREIGN KEY (driverId) REFERENCES drivers (driverId),
-    CONSTRAINT FK3_RESULTS FOREIGN KEY (constructorId) REFERENCES constructors (constructorId),
-    CONSTRAINT FK4_RESULTS FOREIGN KEY (statusId) REFERENCES status (statusId)
+    CONSTRAINT FK1_RESULTS FOREIGN KEY (raceId) REFERENCES races (raceId) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FK2_RESULTS FOREIGN KEY (driverId) REFERENCES drivers (driverId) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT FK3_RESULTS FOREIGN KEY (constructorId) REFERENCES constructors (constructorId) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT FK4_RESULTS FOREIGN KEY (statusId) REFERENCES status (statusId) ON UPDATE CASCADE ON DELETE NO ACTION
 );
