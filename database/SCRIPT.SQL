@@ -1,6 +1,6 @@
 COPY airports
     FROM '/database/airports.csv'
-    WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '\N', QUOTE '"');
+    WITH (FORMAT CSV, HEADER true, DELIMITER ',', QUOTE '"');
 
 COPY circuits
     FROM '/database/circuits.csv'
@@ -35,7 +35,7 @@ COPY driver_standings
     WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '\N', QUOTE '"');
 
 COPY lap_times
-    FROM '/database/laptimes.csv'
+    FROM '/database/lap_times.csv'
     WITH (FORMAT CSV, HEADER true, DELIMITER ',', NULL '\N', QUOTE '"');
 
 COPY pit_stops
