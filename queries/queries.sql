@@ -37,3 +37,9 @@ UPDATE QUALIFYING SET pole_position = 'Podium' WHERE position BETWEEN 1 AND 3;
 --================================================================================--
 
 -- EXERCÍCIO 5
+
+UPDATE DRIVER SET nationality = 'BR' WHERE nationality = 'Brazilian';
+
+--================================================================================--
+
+-- EXERCÍCIO 6
