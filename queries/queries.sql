@@ -30,10 +30,10 @@ ORDER BY AIRPORTS.type ASC;
 -- EXERCÍCIO 4
 
 ALTER TABLE QUALIFYING
-    ADD Pole_Position VARCHAR(6);
+    ADD Podium_Position VARCHAR(6);
 
 UPDATE QUALIFYING
-SET pole_position = 'Podium'
+SET Podium_Position = 'Podium'
 WHERE position BETWEEN 1 AND 3;
 
 --================================================================================--
@@ -104,7 +104,7 @@ DELETE
 FROM TEMP
 WHERE TEMP.count <= 10;
 
-CREATE TABLE COUNTRIESv2 AS
+CREATE TABLE IF NOT EXISTS countriesv2 AS
 SELECT *
 FROM COUNTRIES
 WHERE COUNTRIES.code NOT IN (SELECT TEMP.ISOCountry FROM TEMP);
