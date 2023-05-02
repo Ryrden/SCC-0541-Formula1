@@ -1,6 +1,5 @@
 #Jetbrains 
 .idea/
 *.iml
-.docker-compose.yml
 
 output.sql
