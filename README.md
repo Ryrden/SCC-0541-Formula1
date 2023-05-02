@@ -46,6 +46,16 @@ A partir daqui você deve conectar ao banco de dados utilizando as seguintes cre
 
 ## Criando tabelas e inserindo dados
 
-Após isso, basta executar o script `MAIN.SQL` dentro da pasta `schema/` para criar as tabelas e o script `COPY_SCRIPT.SQL` dentro da pasta `database/` para inserir os dados.
+Após isso, dentro do script `MAIN.SQL` na pasta `load_database/`, substitua a `string` DirLocal pelo endereço onde se encontra as tabelas CSV para inserção dos dados. exemplo:
 
-Para inserir os dados pelo `PG_ADMIN`, basta utilizar a interface de Import/export para arquivos csv, para saber mais, acesse [Import/Export Data](https://www.pgadmin.org/docs/pgadmin4/development/import_export_data.html).
+**Caso esteja utilizando o `docker`:**
+
+substitua a string `DirLocal` por `/database/tables_csv/`:
+
+**Caso esteja utilizando o `GUI do POSTGRESQL`:**
+
+substitua a string `DirLocal` pelo endereço completo de uma pasta que contenha os arquivos CSV dentro do GUI do POSTGRESQL.
+
+por exemplo, se o PG_ADMIN estiver instalado em `C:\Program Files\pgAdmin 4\`, então crie a pasta `tables_csv` ai dentro e substitua a string `DirLocal` por `C:\\Program Files\\pgAdmin 4\\tables_csv\\`. (É necessário utilizar duas barras invertidas somente se estiver utilizando o SO Windows).
+
+Outra opção para inserir os dados pelo `PG_ADMIN` é utilizar a interface de Import/export para arquivos csv, para saber mais, acesse [Import/Export Data](https://www.pgadmin.org/docs/pgadmin4/development/import_export_data.html).
