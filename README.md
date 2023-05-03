@@ -1,7 +1,7 @@
-# Projeto 1 - Fórmula 1 (Criação e inserção de dados)
+# Projeto 2 - Fórmula 1 (Queries SQL)
 
-![modelagem ER](https://i.imgur.com/qJXBMHG.png)
-> Projeto 1 da disciplina SCC0541 - Laboratório de Banco de Dados
+![modelagem ER](https://i.imgur.com/nF4Y3IT.png)
+> Projeto 2 da disciplina SCC0541 - Laboratório de Banco de Dados
 
 ## Pré-requisitos
 
