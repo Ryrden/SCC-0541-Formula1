@@ -68,6 +68,8 @@ FROM (SELECT GEOCITIES15K.country, COUNT(DISTINCT GEOCITIES15K.geonameid) AS num
       GROUP BY GEOCITIES15K.country) AS CITIES
          JOIN (SELECT AIRPORTS.ISOCountry, COUNT(DISTINCT AIRPORTS.ident) AS num_airports
                FROM AIRPORTS
+                        JOIN COUNTRIES ON AIRPORTS.ISOCountry = COUNTRIES.code
+                        JOIN CIRCUITS ON COUNTRIES.name = CIRCUITS.country
                GROUP BY AIRPORTS.ISOCountry) AS airports
               ON AIRPORTS.ISOCountry = CITIES.country;
 
