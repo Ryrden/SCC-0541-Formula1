@@ -47,10 +47,21 @@ ORDER BY COUNT(*) DESC;
 
 -- EXERCÍCIO 2
 
--- 1)
+SELECT A.isocountry AS Country, A.city AS City, COUNT(*) AS Sum FROM airports A
+GROUP BY ROLLUP (1, 2)
+HAVING COUNT(*) >= 12
+ORDER BY COUNT(*) DESC;
 
-SELECT
+--=================================================================================--
 
+-- EXERCÍCIO 3
 
+SELECT C.name, RA.year, COUNT(*) FROM constructors C
+    JOIN results R on C.constructorid = R.constructorid
+    JOIN races RA on R.raceid = RA.raceid
+WHERE R.position = 1
+GROUP BY ROLLUP (1, 2);
 
--- 2)
+--=================================================================================--
+
+-- EXERCÍCIO 4
