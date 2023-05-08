@@ -39,7 +39,8 @@ SELECT C.Name, C.Nationality, COUNT(*)
 FROM Results Re
          JOIN Constructors C ON C.ConstructorID = Re.ConstructorID
          JOIN Status S ON S.StatusID = Re.StatusID
-WHERE S.Status = 'Accident' AND C.Nationality = 'Brazilian'
+WHERE S.Status = 'Accident'
+  AND C.Nationality = 'Brazilian'
 GROUP BY C.Name, C.Nationality
 ORDER BY COUNT(*) DESC;
 
@@ -47,18 +48,29 @@ ORDER BY COUNT(*) DESC;
 
 -- EXERCÍCIO 2
 
-SELECT A.isocountry AS Country, A.city AS City, COUNT(*) AS Sum FROM airports A
+SELECT A.isocountry AS Country, A.city AS City, COUNT(*) AS Sum
+FROM AIRPORTS A
 GROUP BY ROLLUP (1, 2)
 HAVING COUNT(*) >= 12
 ORDER BY COUNT(*) DESC;
+
+-- 1 e 2)
+SELECT A.isocountry AS Country, A.city AS City, COUNT(*) AS Sum
+FROM AIRPORTS A
+WHERE A.isocountry = 'BR'
+GROUP BY ROLLUP (1, 2)
+HAVING COUNT(*) >= 12
+ORDER BY COUNT(*) DESC;
+
 
 --=================================================================================--
 
 -- EXERCÍCIO 3
 
-SELECT C.name, RA.year, COUNT(*) FROM constructors C
-    JOIN results R on C.constructorid = R.constructorid
-    JOIN races RA on R.raceid = RA.raceid
+SELECT C.name, RA.year, COUNT(*)
+FROM CONSTRUCTORS C
+         JOIN RESULTS R on C.constructorid = R.constructorid
+         JOIN RACES RA on R.raceid = RA.raceid
 WHERE R.position = 1
 GROUP BY ROLLUP (1, 2);
 
