@@ -67,12 +67,31 @@ ORDER BY COUNT(*) DESC;
 
 -- EXERCÍCIO 3
 
-SELECT C.name, RA.year, COUNT(*)
+SELECT C.name AS name_constructor, RA.year, COUNT(*) AS victory
 FROM CONSTRUCTORS C
-         JOIN RESULTS R on C.constructorid = R.constructorid
-         JOIN RACES RA on R.raceid = RA.raceid
+         JOIN RESULTS R ON C.constructorid = R.constructorid
+         JOIN RACES RA ON R.raceid = RA.raceid
 WHERE R.position = 1
 GROUP BY ROLLUP (1, 2);
+
+-- 1)
+
+SELECT C.name AS name_constructor, RA.year, COUNT(*) AS victory
+FROM CONSTRUCTORS C
+         JOIN RESULTS R ON C.constructorid = R.constructorid
+         JOIN RACES RA ON R.raceid = RA.raceid
+WHERE R.position = 1 AND C.name = 'Alfa Romeo'
+GROUP BY ROLLUP (1, 2);
+
+-- 2)
+
+SELECT C.name AS name_constructor, RA.year, COUNT(*) AS victory
+FROM CONSTRUCTORS C
+         JOIN RESULTS R ON C.constructorid = R.constructorid
+         JOIN RACES RA ON R.raceid = RA.raceid AND RA.year = 2020
+WHERE R.position = 1
+GROUP BY GROUPING SETS ((C.name, RA.year) ,())
+ORDER BY  COUNT(*) DESC;
 
 --=================================================================================--
 
