@@ -1,7 +1,6 @@
 # Projeto 3 - Fórmula 1 (Queries SQL - Rollup, Cube & Partition)
 
 ![modelagem ER](https://i.imgur.com/nF4Y3IT.png)
-> Projeto 2 da disciplina SCC0541 - Laboratório de Banco de Dados
 
 ## Pré-requisitos
 
