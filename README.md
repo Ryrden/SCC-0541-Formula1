@@ -1,4 +1,4 @@
-# Projeto 3 - Fórmula 1 (Queries SQL - Window Function)
+# Projeto 4 - Fórmula 1 (Queries SQL - Window Function)
 
 ![modelagem ER](https://i.imgur.com/nF4Y3IT.png)
 
