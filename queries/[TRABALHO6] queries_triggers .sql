@@ -155,6 +155,10 @@ INSERT INTO Results (ResultId, RaceId, DriverId, ConstructorId, Number, Grid, Po
 VALUES (25910, 1101, 1, 1, 22, 1, 1, '1', 1, 10.5, 58, '1:34:50.616', 5690616, 39, 2, '1:27.452', '218.300', -2);
 
 -- Exemplo de UPDATE para a alternativa D
+INSERT INTO Results (ResultId, RaceId, DriverId, ConstructorId, Number, Grid, Position, PositionText, PositionOrder,
+                     Points, Laps, Time, Milliseconds, FastestLap, Rank, FastestLapTime, FastestLapSpeed, StatusId)
+VALUES (25910, 1101, 1, 1, 22, 1, 1, '1', 1, 10.5, 58, '1:34:50.616', 5690616, 39, 2, '1:27.452', '218.300', 2);
+
 UPDATE Results
 SET Statusid = -3
 WHERE Resultid = 25910;
