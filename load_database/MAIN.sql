@@ -48,7 +48,7 @@ $$
         DirLocal TEXT;
     BEGIN
         -- Editar para indicar diretorio onde estão os dados: VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-        DirLocal := 'D:\\Softwares\\Postgresql\\pgAdmin 4\\tables_csv\\';
+        DirLocal := 'C:\\Program Files\\PostgreSQL\\15\\pgAdmin 4\\bin\\database\\';
         --||||||||||||||||||||
 -- Editar só até aqui. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 --==============================================================================================================
