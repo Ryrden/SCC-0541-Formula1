@@ -103,4 +103,19 @@ FROM Problemas_circuitos PC;
 SELECT *
 FROM Correcao_circuitos;
 
+----
+
+UPDATE circuits
+SET Country =
+        CASE
+            WHEN Country = 'UAE' THEN 'AE'
+            WHEN Country = 'USA' THEN 'US'
+            WHEN Country = 'UK' THEN 'UA'
+            WHEN Country = 'Korea' THEN 'KR'
+            ELSE Country
+            END;
+
+SELECT *
+FROM Correcao_circuitos;
+
 --=================================================================================--
