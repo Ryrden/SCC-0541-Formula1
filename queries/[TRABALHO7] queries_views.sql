@@ -24,6 +24,41 @@ FROM Aeroportos_Brasileiros;
 --=================================================================================--
 
 -- EXERCÍCIO 2
+DROP MATERIALIZED VIEW IF EXISTS Aeroportos_sem_cidades;
+CREATE MATERIALIZED VIEW Aeroportos_sem_cidades AS
+SELECT *
+FROM AIRPORTS
+WHERE city IS NULL;
+
+SELECT *
+FROM Aeroportos_sem_cidades;
+
+-----
+
+DROP VIEW IF EXISTS Cidades_brasileiras;
+CREATE VIEW Cidades_brasileiras AS
+SELECT name, lat, long, population
+FROM geocities15k
+WHERE population >= 100000
+  AND country = 'BR';
+
+SELECT *
+FROM Cidades_brasileiras;
+-----
+
+CREATE EXTENSION IF NOT EXISTS Cube;
+CREATE EXTENSION IF NOT EXISTS EarthDistance;
+
+SELECT A.AIRPORT,
+       C.name,
+       Earth_Distance(LL_to_Earth(A.AIRPORT_LAT, A.AIRPORT_LONG),
+                      LL_to_Earth(C.Lat, C.Long)) AS DISTANCE
+FROM (SELECT *
+      FROM Aeroportos_Brasileiros) A,
+     (SELECT *
+      FROM Cidades_brasileiras) C
+WHERE Earth_Distance(LL_to_Earth(A.AIRPORT_LAT, A.AIRPORT_LONG),
+                     LL_to_Earth(C.Lat, C.Long)) <= 10000;
 
 --=================================================================================--
 
@@ -65,6 +100,7 @@ CREATE MATERIALIZED VIEW Correcao_circuitos AS
 SELECT PC.Circuit_name, PC.Circuit_location, PC.Country
 FROM Problemas_circuitos PC;
 
-SELECT * FROM Correcao_circuitos;
+SELECT *
+FROM Correcao_circuitos;
 
 --=================================================================================--
