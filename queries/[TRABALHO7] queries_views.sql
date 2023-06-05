@@ -12,7 +12,8 @@ SELECT A.name    AS AIRPORT,
 FROM AIRPORTS A
          JOIN COUNTRIES CO ON A.isocountry = CO.code
          JOIN GEOCITIES15K CI ON CO.code = CI.country
-WHERE A.city = CI.name;
+WHERE A.city = CI.name
+  AND A.isocountry = 'BR';
 
 -- Number of elements created in View
 SELECT *
